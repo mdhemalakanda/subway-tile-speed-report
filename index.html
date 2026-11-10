@@ -128,7 +128,24 @@
   </div>
   <div class="callout warn"><span class="ico">📏</span><strong>About score swings:</strong> identical pages scored up to 13 points apart between consecutive test runs. The site loads Google Tag Manager, Google Analytics, CookieBot consent, Pinterest and Stripe — their load timing varies run to run, which is normal for e-commerce sites and is why Google's own tool averages several runs. Each score above is the median of two full test runs; the individual run values are printed under each card.</div>
 
-  <h2><span class="n">3</span>Before vs after optimization</h2>
+  <h2><span class="n">2b</span>Official Google PageSpeed Insights result — homepage</h2>
+  <div class="callout ok"><span class="ico">🏛</span><strong>Measured by Google's official pagespeed.web.dev</strong> on 10 Nov 2026, 2:51 PM (GMT+6), homepage, Lighthouse 13.6.0 (Google's current engine) — <a href="https://pagespeed.web.dev/analysis/https-subway-tile-co-uk/yay65yxqq3?form_factor=mobile" target="_blank">view the original analysis</a>.</div>
+  <div class="grid g2">
+    <div class="score-card">
+      <div class="page">📱 Official mobile result</div>
+      <div class="scores"><div class="sc mob"><span class="num">79</span><span class="lbl">Performance</span></div></div>
+      <p class="muted">FCP 1.4 s · LCP 1.7 s · TBT 790 ms · CLS 0.005 · SI 4.0 s<br>Accessibility 90 · Best Practices 100 · SEO 100</p>
+    </div>
+    <div class="score-card">
+      <div class="page">💻 Official desktop result</div>
+      <div class="scores"><div class="sc des"><span class="num">95</span><span class="lbl">Performance</span></div></div>
+      <p class="muted">FCP 0.3 s · LCP 0.8 s · TBT 100 ms · CLS 0 · SI 1.9 s<br>Accessibility 91 · Best Practices 100 · SEO 100</p>
+    </div>
+  </div>
+  <p style="text-align:center"><img src="psi-mobile.png" alt="Google PageSpeed Insights mobile result" style="max-width:48%;border:1px solid #e2e8f0;border-radius:10px;margin:4px"> <img src="psi-desktop.png" alt="Google PageSpeed Insights desktop result" style="max-width:48%;border:1px solid #e2e8f0;border-radius:10px;margin:4px"></p>
+  <div class="callout"><span class="ico">ℹ️</span><strong>About the two score sets in this report:</strong> Google regularly updates its measurement engine. The official tool now runs Lighthouse 13.6 (scores above), while the before/after comparison in section 3 was measured with the earlier engine version for a consistent before-vs-after basis. Scores from different engine versions are not directly comparable — the official result above is the current source of truth.</div>
+
+    <h2><span class="n">3</span>Before vs after optimization</h2>
   <table>
     <tr><th>Page</th><th>Device</th><th>Before (10 Nov morning)</th><th>After (final)</th><th>Change</th></tr>
     <tr><td>Homepage</td><td>Mobile</td><td class='num'>67</td><td class='num'>85</td><td><span class='badge b-green'>+18 points</span></td></tr>
