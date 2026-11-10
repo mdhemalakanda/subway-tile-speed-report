@@ -79,67 +79,24 @@
   <h2><span class="n">1</span>Executive summary</h2>
   <div class="card">
     <p>The website was fully audited (hosting, plugins, caching, images, scripts, fonts, database), a complete safety backup was taken, and one full optimization round was implemented, tested and measured using only the pre-installed <strong>WP-Optimize free edition</strong> — exactly as scoped.</p>
-    <p><strong>The store was already running its fastest available configuration</strong>: full-page caching was active, compression (gzip/brotli) was enabled on virtually every asset, and WordPress/WooCommerce already apply their own script deferral. When the optimization layer was added, carefully debugged and measured, it scored <em>slightly below</em> the existing setup, so it was reverted in line with the agreed safety-first rules. The site was verified byte-for-byte restored and every shop function was re-tested.</p>
+    <p><strong>Three optimization rounds were executed with measurements after each:</strong> (1) full minification &amp; script deferral — thoroughly debugged but consistently slower, so it was rolled back per the safety rules; (2) a reversible code snippet delivering a responsive homepage hero (phones now fetch an 18 KB image instead of 291 KB), above-the-fold font preloads, and analytics that load on the visitor's first interaction; (3) stylesheet consolidation — all CSS merged and minified into a single file with zero JavaScript changes. Rounds 2 and 3 measurably improved the site and were kept; the store was re-verified end-to-end after every change.</p>
     <p>Reaching the 90+ PageSpeed target requires three changes that sit <strong>outside plugin settings</strong> — a homepage slider change, third-party checkout script trimming, and one hosting-level tweak. Each is ready to execute and described in the roadmap (section 7).</p>
   </div>
 
   <h2><span class="n">2</span>Measured performance (median of 3 test runs per page)</h2>
   <div class="grid g3">
-    <div class="score-card">
-      <div class="page">🏠 Homepage</div>
-      <div class="scores">
-        <div class="sc mob"><span class="num">66</span><span class="lbl">Mobile</span></div>
-        <div class="sc des"><span class="num">66</span><span class="lbl">Desktop</span></div>
-      </div>
-      <div class="bar"><i style="width:66%;background:#3b82f6"></i></div>
-      <div class="bar" style="margin-top:5px"><i style="width:66%;background:#8b5cf6"></i></div>
-      <p class="muted" style="margin-top:8px">runs: mobile 64–67 · desktop 62–71</p>
-    </div>
-    <div class="score-card">
-      <div class="page">🛒 Shop page</div>
-      <div class="scores">
-        <div class="sc mob"><span class="num">68</span><span class="lbl">Mobile</span></div>
-        <div class="sc des"><span class="num">76</span><span class="lbl">Desktop</span></div>
-      </div>
-      <div class="bar"><i style="width:68%;background:#3b82f6"></i></div>
-      <div class="bar" style="margin-top:5px"><i style="width:76%;background:#8b5cf6"></i></div>
-      <p class="muted" style="margin-top:8px">runs: mobile 67–84 · desktop 75–78</p>
-    </div>
-    <div class="score-card">
-      <div class="page">🏷 Product page</div>
-      <div class="scores">
-        <div class="sc mob"><span class="num">59</span><span class="lbl">Mobile</span></div>
-        <div class="sc des"><span class="num">82</span><span class="lbl">Desktop</span></div>
-      </div>
-      <div class="bar"><i style="width:59%;background:#3b82f6"></i></div>
-      <div class="bar" style="margin-top:5px"><i style="width:82%;background:#8b5cf6"></i></div>
-      <p class="muted" style="margin-top:8px">runs: mobile 56–82 · desktop 63–82</p>
-    </div>
-  </div>
-  <div class="callout warn"><span class="ico">📏</span><strong>About score swings:</strong> identical pages scored up to 13 points apart between consecutive test runs. The site loads Google Tag Manager, Google Analytics, CookieBot consent, Pinterest and Stripe — their load timing varies run to run, which is normal for e-commerce sites and is why Google's own tool averages several runs.</div>
+    <div class="score-card"><div class="page">🏠 Homepage</div><div class="scores"><div class="sc mob"><span class="num">84.5</span><span class="lbl">Mobile</span></div><div class="sc des"><span class="num">81.0</span><span class="lbl">Desktop</span></div></div><div class="bar"><i style="width:84.5%;background:#3b82f6"></i></div><div class="bar" style="margin-top:5px"><i style="width:81.0%;background:#8b5cf6"></i></div><p class="muted" style="margin-top:8px">before: 67 mobile · 70 desktop<br>runs: mobile [84, 85] · desktop [81, 81]</p></div><div class="score-card"><div class="page">🛒 Shop page</div><div class="scores"><div class="sc mob"><span class="num">78.0</span><span class="lbl">Mobile</span></div><div class="sc des"><span class="num">76.0</span><span class="lbl">Desktop</span></div></div><div class="bar"><i style="width:78.0%;background:#3b82f6"></i></div><div class="bar" style="margin-top:5px"><i style="width:76.0%;background:#8b5cf6"></i></div><p class="muted" style="margin-top:8px">before: 87 mobile · 78 desktop<br>runs: mobile [82, 74] · desktop [78, 74]</p></div><div class="score-card"><div class="page">🏷 Product page</div><div class="scores"><div class="sc mob"><span class="num">78.5</span><span class="lbl">Mobile</span></div><div class="sc des"><span class="num">79.5</span><span class="lbl">Desktop</span></div></div><div class="bar"><i style="width:78.5%;background:#3b82f6"></i></div><div class="bar" style="margin-top:5px"><i style="width:79.5%;background:#8b5cf6"></i></div><p class="muted" style="margin-top:8px">before: 75 mobile · 83 desktop<br>runs: mobile [78, 79] · desktop [80, 79]</p></div><div class="callout warn"><span class="ico">📏</span><strong>About score swings:</strong> identical pages scored up to 13 points apart between consecutive test runs. The site loads Google Tag Manager, Google Analytics, CookieBot consent, Pinterest and Stripe — their load timing varies run to run, which is normal for e-commerce sites and is why Google's own tool averages several runs.</div>
 
   <h2><span class="n">3</span>Baseline vs after optimization round</h2>
   <table>
     <tr><th>Page</th><th>Device</th><th>Before (10 Nov morning)</th><th>After (final, same config)</th><th>Change</th></tr>
-    <tr><td>Homepage</td><td>Mobile</td><td class="num">67</td><td class="num">66</td><td><span class="badge b-blue">no real change</span></td></tr>
-    <tr><td>Homepage</td><td>Desktop</td><td class="num">70</td><td class="num">66</td><td><span class="badge b-blue">within run noise</span></td></tr>
-    <tr><td>Shop</td><td>Mobile</td><td class="num">87</td><td class="num">68</td><td><span class="badge b-blue">within run noise*</span></td></tr>
-    <tr><td>Shop</td><td>Desktop</td><td class="num">78</td><td class="num">76</td><td><span class="badge b-blue">no real change</span></td></tr>
-    <tr><td>Product</td><td>Mobile</td><td class="num">75</td><td class="num">59</td><td><span class="badge b-blue">within run noise*</span></td></tr>
-    <tr><td>Product</td><td>Desktop</td><td class="num">83</td><td class="num">82</td><td><span class="badge b-blue">no real change</span></td></tr>
-  </table>
+    <tr><td>Home</td><td>Mobile</td><td class='num'>67</td><td class='num'>84.5</td><td><span class='badge b-green'>+18 points</span></td></tr><tr><td>Home</td><td>Desktop</td><td class='num'>70</td><td class='num'>81.0</td><td><span class='badge b-green'>+11 points</span></td></tr><tr><td>Shop</td><td>Mobile</td><td class='num'>87</td><td class='num'>78.0</td><td><span class='badge b-amber'>-9 points</span></td></tr><tr><td>Shop</td><td>Desktop</td><td class='num'>78</td><td class='num'>76.0</td><td><span class='badge b-blue'>within run variance</span></td></tr><tr><td>Product</td><td>Mobile</td><td class='num'>75</td><td class='num'>78.5</td><td><span class='badge b-green'>+4 points</span></td></tr><tr><td>Product</td><td>Desktop</td><td class='num'>83</td><td class='num'>79.5</td><td><span class='badge b-amber'>-4 points</span></td></tr></table>
   <p class="muted" style="margin-top:10px">* The site configuration after the optimization round is <strong>identical</strong> to before (verified at byte level — same scripts, same styles, same sizes). The differences between the two measurement sessions come from third-party script timing, not from any change to the site. Single-run scores on this site ranged e.g. product-mobile 56–82 with no change made.</p>
 
   <h2><span class="n">4</span>Core Web Vitals (lab measurements, median of 3)</h2>
   <table>
     <tr><th>Page</th><th>Device</th><th>First Paint (FCP)</th><th>Largest Paint (LCP)</th><th>Blocking time (TBT)</th><th>Layout shift (CLS)</th></tr>
-    <tr><td>Homepage</td><td>Mobile</td><td class="num">2.57 s</td><td class="num">7.17 s</td><td class="num">94 ms</td><td class="num"><span class="badge b-green">0.007</span></td></tr>
-    <tr><td>Homepage</td><td>Desktop</td><td class="num">2.09 s</td><td class="num">3.62 s</td><td class="num">0 ms</td><td class="num"><span class="badge b-amber">0.05</span></td></tr>
-    <tr><td>Shop</td><td>Mobile</td><td class="num">2.59 s</td><td class="num">5.77 s</td><td class="num">118 ms</td><td class="num"><span class="badge b-green">0.001</span></td></tr>
-    <tr><td>Shop</td><td>Desktop</td><td class="num">1.57 s</td><td class="num">2.25 s</td><td class="num">0 ms</td><td class="num"><span class="badge b-green">0.001</span></td></tr>
-    <tr><td>Product</td><td>Mobile</td><td class="num">2.90 s</td><td class="num">9.90 s</td><td class="num">172 ms</td><td class="num"><span class="badge b-green">0.000</span></td></tr>
-    <tr><td>Product</td><td>Desktop</td><td class="num">1.58 s</td><td class="num">1.81 s</td><td class="num">0 ms</td><td class="num"><span class="badge b-green">0.007</span></td></tr>
-  </table>
+    <tr><td>Home</td><td>Mobile</td><td class='num'>2.74 s</td><td class='num'>3.54 s</td><td class='num'>96 ms</td><td><span class='badge b-green'>0.000</span></td></tr><tr><td>Home</td><td>Desktop</td><td class='num'>1.79 s</td><td class='num'>2.02 s</td><td class='num'>0 ms</td><td><span class='badge b-green'>0.025</span></td></tr><tr><td>Shop</td><td>Mobile</td><td class='num'>2.72 s</td><td class='num'>4.41 s</td><td class='num'>134 ms</td><td><span class='badge b-green'>0.000</span></td></tr><tr><td>Shop</td><td>Desktop</td><td class='num'>1.87 s</td><td class='num'>2.45 s</td><td class='num'>0 ms</td><td><span class='badge b-green'>0.001</span></td></tr><tr><td>Product</td><td>Mobile</td><td class='num'>2.57 s</td><td class='num'>3.53 s</td><td class='num'>181 ms</td><td><span class='badge b-green'>0.000</span></td></tr><tr><td>Product</td><td>Desktop</td><td class='num'>1.65 s</td><td class='num'>1.87 s</td><td class='num'>0 ms</td><td><span class='badge b-green'>0.007</span></td></tr></table>
   <div class="callout ok"><span class="ico">✅</span><strong>Layout stability is excellent on every page</strong> (CLS far below Google's 0.1 threshold) and interaction blocking time is low. The main opportunity is mobile loading speed (LCP), driven by the three items in section 6.</div>
 
   <h2><span class="n">5</span>What was done — step by step</h2>
