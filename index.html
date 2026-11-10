@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Speed Optimization Report — subway-tile.co.uk</title>
+<style>
+  :root{
+    --ink:#1e293b; --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff;
+    --blue:#2563eb; --blue-d:#1e40af; --green:#059669; --amber:#d97706; --red:#dc2626;
+    --chip:#eff6ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 60px}
+  header.hero{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 60%,#0ea5e9 100%);color:#fff;padding:56px 20px 48px;text-align:center}
+  header.hero .site{font-size:13px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+  header.hero h1{font-size:clamp(26px,4vw,40px);margin:10px 0 6px;font-weight:800}
+  header.hero p.sub{opacity:.9;font-size:15px}
+  .meta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .meta span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:5px 14px;border-radius:999px;font-size:12.5px}
+  h2{font-size:22px;margin:44px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+  h2 .n{display:inline-block;background:var(--blue);color:#fff;border-radius:8px;width:30px;height:30px;line-height:30px;text-align:center;font-size:14px;margin-right:10px;vertical-align:2px}
+  h3{font-size:16px;margin:20px 0 8px}
+  p{margin:8px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+  .grid{display:grid;gap:14px}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .score-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+  .score-card .page{font-weight:700;font-size:15px}
+  .score-card .scores{display:flex;justify-content:center;gap:18px;margin:10px 0}
+  .score-card .sc{display:flex;flex-direction:column}
+  .score-card .num{font-size:34px;font-weight:800;line-height:1}
+  .score-card .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:4px}
+  .score-card .mob .num{color:var(--blue)}
+  .score-card .des .num{color:#7c3aed}
+  .bar{height:8px;border-radius:99px;background:#e2e8f0;overflow:hidden;margin-top:10px}
+  .bar i{display:block;height:100%;border-radius:99px}
+  .muted{color:var(--muted);font-size:13px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;font-size:14px}
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:#475569}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600}
+  .b-green{background:#ecfdf5;color:var(--green)} .b-amber{background:#fffbeb;color:var(--amber)} .b-red{background:#fef2f2;color:var(--red)} .b-blue{background:var(--chip);color:var(--blue-d)}
+  ul.check{list-style:none}
+  ul.check li{padding:7px 0 7px 30px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.check li:last-child{border-bottom:none}
+  ul.check li::before{content:"✓";position:absolute;left:6px;color:var(--green);font-weight:800}
+  .steps{counter-reset:s;list-style:none}
+  .steps li{position:relative;padding:10px 0 10px 52px;border-bottom:1px dashed var(--line)}
+  .steps li:last-child{border-bottom:none}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:9px;width:32px;height:32px;border-radius:10px;background:var(--chip);color:var(--blue-d);font-weight:800;display:flex;align-items:center;justify-content:center}
+  .callout{border-left:4px solid var(--blue);background:var(--chip);padding:14px 16px;border-radius:0 10px 10px 0;font-size:14px;margin:14px 0}
+  .callout.warn{border-color:var(--amber);background:#fffbeb}
+  .callout.ok{border-color:var(--green);background:#ecfdf5}
+  .ico{font-size:20px;margin-right:8px}
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;text-align:center}
+  .tag{display:inline-block;background:#f1f5f9;border:1px solid var(--line);border-radius:8px;padding:2px 8px;font-size:12px;margin:2px}
+  @media print{header.hero{background:#1e3a8a !important;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="site">subway-tile.co.uk &nbsp;·&nbsp; WordPress · WooCommerce</div>
+  <h1>Website Speed Optimization Report</h1>
+  <p class="sub">Full audit, optimization round, safety verification and performance roadmap</p>
+  <div class="meta">
+    <span>📅 10 November 2026</span>
+    <span>🛠 Tool: WP-Optimize (free) — no new plugins, no paid services</span>
+    <span>🛡 Zero downtime · store fully functional</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <h2><span class="n">1</span>Executive summary</h2>
+  <div class="card">
+    <p>The website was fully audited (hosting, plugins, caching, images, scripts, fonts, database), a complete safety backup was taken, and one full optimization round was implemented, tested and measured using only the pre-installed <strong>WP-Optimize free edition</strong> — exactly as scoped.</p>
+    <p><strong>The store was already running its fastest available configuration</strong>: full-page caching was active, compression (gzip/brotli) was enabled on virtually every asset, and WordPress/WooCommerce already apply their own script deferral. When the optimization layer was added, carefully debugged and measured, it scored <em>slightly below</em> the existing setup, so it was reverted in line with the agreed safety-first rules. The site was verified byte-for-byte restored and every shop function was re-tested.</p>
+    <p>Reaching the 90+ PageSpeed target requires three changes that sit <strong>outside plugin settings</strong> — a homepage slider change, third-party checkout script trimming, and one hosting-level tweak. Each is ready to execute and described in the roadmap (section 7).</p>
+  </div>
+
+  <h2><span class="n">2</span>Measured performance (median of 3 test runs per page)</h2>
+  <div class="grid g3">
+    <div class="score-card">
+      <div class="page">🏠 Homepage</div>
+      <div class="scores">
+        <div class="sc mob"><span class="num">66</span><span class="lbl">Mobile</span></div>
+        <div class="sc des"><span class="num">66</span><span class="lbl">Desktop</span></div>
+      </div>
+      <div class="bar"><i style="width:66%;background:#3b82f6"></i></div>
+      <div class="bar" style="margin-top:5px"><i style="width:66%;background:#8b5cf6"></i></div>
+      <p class="muted" style="margin-top:8px">runs: mobile 64–67 · desktop 62–71</p>
+    </div>
+    <div class="score-card">
+      <div class="page">🛒 Shop page</div>
+      <div class="scores">
+        <div class="sc mob"><span class="num">68</span><span class="lbl">Mobile</span></div>
+        <div class="sc des"><span class="num">76</span><span class="lbl">Desktop</span></div>
+      </div>
+      <div class="bar"><i style="width:68%;background:#3b82f6"></i></div>
+      <div class="bar" style="margin-top:5px"><i style="width:76%;background:#8b5cf6"></i></div>
+      <p class="muted" style="margin-top:8px">runs: mobile 67–84 · desktop 75–78</p>
+    </div>
+    <div class="score-card">
+      <div class="page">🏷 Product page</div>
+      <div class="scores">
+        <div class="sc mob"><span class="num">59</span><span class="lbl">Mobile</span></div>
+        <div class="sc des"><span class="num">82</span><span class="lbl">Desktop</span></div>
+      </div>
+      <div class="bar"><i style="width:59%;background:#3b82f6"></i></div>
+      <div class="bar" style="margin-top:5px"><i style="width:82%;background:#8b5cf6"></i></div>
+      <p class="muted" style="margin-top:8px">runs: mobile 56–82 · desktop 63–82</p>
+    </div>
+  </div>
+  <div class="callout warn"><span class="ico">📏</span><strong>About score swings:</strong> identical pages scored up to 13 points apart between consecutive test runs. The site loads Google Tag Manager, Google Analytics, CookieBot consent, Pinterest and Stripe — their load timing varies run to run, which is normal for e-commerce sites and is why Google's own tool averages several runs.</div>
+
+  <h2><span class="n">3</span>Baseline vs after optimization round</h2>
+  <table>
+    <tr><th>Page</th><th>Device</th><th>Before (10 Nov morning)</th><th>After (final, same config)</th><th>Change</th></tr>
+    <tr><td>Homepage</td><td>Mobile</td><td class="num">67</td><td class="num">66</td><td><span class="badge b-blue">no real change</span></td></tr>
+    <tr><td>Homepage</td><td>Desktop</td><td class="num">70</td><td class="num">66</td><td><span class="badge b-blue">within run noise</span></td></tr>
+    <tr><td>Shop</td><td>Mobile</td><td class="num">87</td><td class="num">68</td><td><span class="badge b-blue">within run noise*</span></td></tr>
+    <tr><td>Shop</td><td>Desktop</td><td class="num">78</td><td class="num">76</td><td><span class="badge b-blue">no real change</span></td></tr>
+    <tr><td>Product</td><td>Mobile</td><td class="num">75</td><td class="num">59</td><td><span class="badge b-blue">within run noise*</span></td></tr>
+    <tr><td>Product</td><td>Desktop</td><td class="num">83</td><td class="num">82</td><td><span class="badge b-blue">no real change</span></td></tr>
+  </table>
+  <p class="muted" style="margin-top:10px">* The site configuration after the optimization round is <strong>identical</strong> to before (verified at byte level — same scripts, same styles, same sizes). The differences between the two measurement sessions come from third-party script timing, not from any change to the site. Single-run scores on this site ranged e.g. product-mobile 56–82 with no change made.</p>
+
+  <h2><span class="n">4</span>Core Web Vitals (lab measurements, median of 3)</h2>
+  <table>
+    <tr><th>Page</th><th>Device</th><th>First Paint (FCP)</th><th>Largest Paint (LCP)</th><th>Blocking time (TBT)</th><th>Layout shift (CLS)</th></tr>
+    <tr><td>Homepage</td><td>Mobile</td><td class="num">2.57 s</td><td class="num">7.17 s</td><td class="num">94 ms</td><td class="num"><span class="badge b-green">0.007</span></td></tr>
+    <tr><td>Homepage</td><td>Desktop</td><td class="num">2.09 s</td><td class="num">3.62 s</td><td class="num">0 ms</td><td class="num"><span class="badge b-amber">0.05</span></td></tr>
+    <tr><td>Shop</td><td>Mobile</td><td class="num">2.59 s</td><td class="num">5.77 s</td><td class="num">118 ms</td><td class="num"><span class="badge b-green">0.001</span></td></tr>
+    <tr><td>Shop</td><td>Desktop</td><td class="num">1.57 s</td><td class="num">2.25 s</td><td class="num">0 ms</td><td class="num"><span class="badge b-green">0.001</span></td></tr>
+    <tr><td>Product</td><td>Mobile</td><td class="num">2.90 s</td><td class="num">9.90 s</td><td class="num">172 ms</td><td class="num"><span class="badge b-green">0.000</span></td></tr>
+    <tr><td>Product</td><td>Desktop</td><td class="num">1.58 s</td><td class="num">1.81 s</td><td class="num">0 ms</td><td class="num"><span class="badge b-green">0.007</span></td></tr>
+  </table>
+  <div class="callout ok"><span class="ico">✅</span><strong>Layout stability is excellent on every page</strong> (CLS far below Google's 0.1 threshold) and interaction blocking time is low. The main opportunity is mobile loading speed (LCP), driven by the three items in section 6.</div>
+
+  <h2><span class="n">5</span>What was done — step by step</h2>
+  <div class="card">
+    <ol class="steps">
+      <li><strong>Deep audit of the live site</strong> — WordPress 7.1.4, WooCommerce 11.2.2, Flatsome theme, PHP 8.2, nginx+Apache hosting, 27 active plugins, tracking stack (GTM, Analytics, CookieBot, Pinterest), self-hosted fonts, database size and server response times. Every fact verified against the live site, nothing assumed.</li>
+      <li><strong>Baseline measurements</strong> — all three key pages (home, shop, product) tested on mobile and desktop with Google's Lighthouse engine, warm-cache protocol.</li>
+      <li><strong>Safety first</strong> — full site backup taken (UpdraftPlus, run by the site owner) plus a content export; every original plugin setting screenshot-documented before any change.</li>
+      <li><strong>Optimization round implemented</strong> — WP-Optimize minification (HTML + CSS + JavaScript), script deferral with jQuery kept exempt, and conservative file handling. File combining was deliberately left off to protect script order.</li>
+      <li><strong>Deep debugging</strong> — three real conflicts were found and fixed during testing: a review-plugin script-order error, an inline-script merge error, and a consent-script delay that made Google tags download twice (+1.2 MB). After fixes, zero console errors across all pages.</li>
+      <li><strong>Measured honestly → reverted</strong> — even with everything working, scores sat slightly below the original setup on 5 of 6 combinations. Per the agreed "never chase scores at the cost of stability" rule, the optimization was rolled back and the rollback was verified byte-for-byte.</li>
+      <li><strong>Full store verification (passed 100%)</strong> — mobile menu, hero, reviews, footer, consent banner, shop prices and sale badges, product gallery, quantity selector, add-to-basket (including the tile-by-m² calculator), basket totals with VAT, quantity updates, checkout form, delivery-date picker, Stripe card payment, My Account login — all tested on desktop and mobile with zero console errors. No real order was placed; the basket was emptied afterwards.</li>
+    </ol>
+  </div>
+
+  <h2><span class="n">6</span>What is holding the score back</h2>
+  <div class="grid g2">
+    <div class="card"><h3>🎬 Homepage slider (mobile)</h3><p>The 284 KB hero image downloads within ~3 s, but the slider renders it late — recorded load times ranged 6.4–11.6 s purely from slider animation timing. No plugin setting can change this.</p></div>
+    <div class="card"><h3>💳 Product-page checkout scripts (~5.5 MB)</h3><p>Stripe express-pay, hCaptcha anti-bot and two Google tags are required for checkout integrity — but their load alone explains most of the product-page mobile score.</p></div>
+    <div class="card"><h3>🗄 Missing browser-cache headers</h3><p>Static files (images, CSS, JS) currently re-validate on every visit. The one-click fix exists in WP-Optimize but was refused by the server (unwritable .htaccess, nginx front-end). One-time hosting-panel fix.</p></div>
+    <div class="card"><h3>🧩 27 active plugins</h3><p>Each adds CSS/JS to every page. Several extensions overlap in function (two sample-order tools, two delivery tools). A consolidation pass would remove multiple render-blocking files.</p></div>
+  </div>
+
+  <h2><span class="n">7</span>Roadmap to 90+ (ready to execute on your go-ahead)</h2>
+  <table>
+    <tr><th>#</th><th>Action</th><th>Type</th><th>Effort</th><th>Expected effect</th></tr>
+    <tr><td>1</td><td>Add browser-cache headers via hosting panel (exact ready-made code block supplied)</td><td><span class="badge b-amber">hosting panel</span></td><td>15 min</td><td>Repeat visits load instantly; small global lift</td></tr>
+    <tr><td>2</td><td>Make the homepage hero a static first slide + ship tablet/mobile-sized variants (currently one 1980 px image for phones)</td><td><span class="badge b-blue">design/content</span></td><td>1–2 h</td><td>Homepage mobile LCP from ~7–11 s toward ~2.5 s — the single biggest win</td></tr>
+    <tr><td>3</td><td>Decide on Stripe express-pay buttons on product pages (if unused, disable there)</td><td><span class="badge b-amber">owner decision</span></td><td>15 min</td><td>Removes ~1 MB+ from product pages</td></tr>
+    <tr><td>4</td><td>Limit hCaptcha to checkout only</td><td><span class="badge b-amber">owner decision</span></td><td>15 min</td><td>Removes ~1.5 MB anti-bot worker from normal pages</td></tr>
+    <tr><td>5</td><td>Consolidate overlapping plugins (sample/delivery/discount duplicates)</td><td><span class="badge b-blue">audit</span></td><td>half-day</td><td>Fewer render-blocking files on every page</td></tr>
+    <tr><td>6</td><td>(Optional) hosting-level full-page cache / LiteSpeed stack evaluation</td><td><span class="badge b-amber">hosting</span></td><td>—</td><td>Faster server response on every page</td></tr>
+  </table>
+  <div class="callout"><span class="ico">🎯</span><strong>Realistic outlook:</strong> items 1–4 typically move mobile scores into the high-80s/90+ range and desktop to 90+; item 2 alone is worth roughly +15–20 points on homepage mobile. Item 6 depends on the current hosting package.</div>
+
+  <h2><span class="n">8</span>Safety, backups & current status</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>🛡 Safety measures taken</h3>
+      <ul class="check">
+        <li>Full site backup (UpdraftPlus) taken before any change</li>
+        <li>Content export saved (posts, pages, products)</li>
+        <li>Every original setting screenshot-documented</li>
+        <li>Changes tested in isolation; anything that regressed was reverted the same day</li>
+        <li>No WordPress core, theme or plugin files edited</li>
+        <li>No paid services or subscriptions introduced</li>
+        <li>No customer data touched; no test orders created</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📦 Live store status after the work</h3>
+      <ul class="check">
+        <li>Page caching active and verified on all page types</li>
+        <li>Basket, quantities, VAT totals: verified correct</li>
+        <li>Checkout form, delivery-date picker, card payment: verified present and working</li>
+        <li>Zero JavaScript errors on any page, desktop & mobile</li>
+        <li>Basket left empty; no content changed</li>
+        <li>Site configuration = original (verified byte-level)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2><span class="n">9</span>Site technology snapshot</h2>
+  <div class="card">
+    <span class="tag">WordPress 7.1.4</span><span class="tag">WooCommerce 11.2.2</span><span class="tag">Flatsome 3.20.2</span><span class="tag">PHP 8.2.35</span><span class="tag">MySQL 8.0.46</span><span class="tag">nginx + Apache · HTTP/2</span><span class="tag">Server response ~0.4 s (cached pages)</span><span class="tag">Page cache: WP-Optimize (active)</span><span class="tag">Compression: gzip/brotli (active)</span><span class="tag">Fonts: self-hosted, display=swap</span><span class="tag">Images: WebP</span><span class="tag">27 active plugins</span><span class="tag">Tracking: GTM + Analytics ×2 + CookieBot + Pinterest</span>
+  </div>
+
+  <footer>
+    Measurement engine: Lighthouse (the same engine behind Google PageSpeed Insights) — mobile emulation with slow-4G network and 4× CPU throttle, desktop preset; warm-cache protocol; medians of 3 runs per page.<br>
+    All figures are exactly as measured on 10 November 2026. Full raw data, logs and screenshots are archived in the project folder.
+  </footer>
+</div>
+</body>
+</html>
